@@ -1,5 +1,5 @@
 {
     "port": 5000,
     "jwtSecret":"david denta",
-    "mongoUrl" : "mongodb+srv://david:davo1996@cluster0.qmvjf.mongodb.net/app?retryWrites=true&w=majority"
+    "mongoUrl" : "mongodb+srv://david:davo1996@cluster0.qmvjf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 }

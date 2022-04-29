@@ -14,6 +14,7 @@ router.post(
     check("email", "Սխալ էլեկտրոնային հասցե").isEmail(),
     check("password", "Պետք է լինի գոնե 6 նիշ").isLength({ min: 6 }),
     check("name", "Լրացրեք ձեր անունը").exists(),
+    check("lastName", "Լրացրեք ձեր Ազգանունը").exists(),
   ],
   async (req, res) => {
     try {
@@ -26,7 +27,7 @@ router.post(
         });
       }
 
-      const { email, password, name } = req.body;
+      const { email, password, name, lastName } = req.body;
 
       const candidate = await User.findOne({ email });
 
@@ -37,7 +38,12 @@ router.post(
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
-      const user = new User({ email, password: hashedPassword, name });
+      const user = new User({
+        email,
+        password: hashedPassword,
+        name,
+        lastName,
+      });
 
       await user.save();
 
@@ -85,7 +91,7 @@ router.post(
           .send({ message: "Սխալ գաղտնաբառ, փորձեք նորից" });
       }
 
-      const token = jwt.sign({ userId: user.id }, config.get("jwtSecret"), {
+      const token = jwt.sign({ userId: user._id }, config.get("jwtSecret"), {
         expiresIn: "1h",
       });
 
