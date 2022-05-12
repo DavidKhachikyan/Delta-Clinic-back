@@ -49,7 +49,6 @@ router.post(
 
       res.status(201).json({ message: "Օգտագործողը հաստատվեց" });
     } catch (e) {
-      console.log(e, "e");
       res.status(500).json({ message: "Ինչ-որ բան այն չէ, նորից փորձեք" });
     }
   }
@@ -97,7 +96,6 @@ router.post(
 
       res.send({ token, userId: user.id });
     } catch (e) {
-      console.log(e);
       res.status(500).send({ message: "Ինչ-որ բան այն չէ, նորից փորձեք" });
     }
   }

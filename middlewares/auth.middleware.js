@@ -12,6 +12,9 @@ const checkAuth = function (req, res, next) {
     token,
     config.get("jwtSecret"),
     async (err, payload) => {
+      if (err || !payload) {
+        return res.status(401).send({ message: "Unauthorized" });
+      }
       const user = await User.findOne({ _id: payload.userId });
       if (!user) {
         return res.status(401).send({ message: "Unauthorized" });

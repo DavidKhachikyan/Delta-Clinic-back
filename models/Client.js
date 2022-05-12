@@ -3,7 +3,7 @@ const schema = new Schema({
   name: { type: String, required: true },
   phone: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  information: { type: String },
+  // information: { type: String },
   date: { type: Date },
 });
 
